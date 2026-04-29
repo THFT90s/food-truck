@@ -4,7 +4,7 @@ const { getCollection, ObjectID } = require('../../../dbconnect')
 let fullMenu = null
 const getMenu = async() => {
     if (!fullMenu) fullMenu = await getCollection()
-    return fullMenu
+    return fullMenu 
 }
 
 //GET /api/v1/menu - This route should return a JSON object that contains 

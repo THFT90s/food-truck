@@ -4,7 +4,7 @@ const { getCollection, ObjectID } = require('../../../dbconnect')
 let events = null
 const getEvents = async() => {
     if (!events) events = await getCollection()
-    return events
+    return events 
 }
 
 //GET /api/v1/events - This route should return a JSON object that 

@@ -17,4 +17,4 @@ router.get('/admin', (request, response) => {
     response.sendFile('index.html', {root})
 })
 
-module.exports = router
+module.exports = router 
