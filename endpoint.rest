@@ -1,0 +1,29 @@
+### Variables here
+@url = http://localhost:3010/api/v1/
+
+@id = 
+
+### GET all
+GET {{url}}events
+
+GET {{url}}menu
+
+### Get by Id
+GET {{url}}events/{{id}}
+
+GET {{url}}menu/{{id}}
+
+### 
+POST {{url}}events
+Content-Type: application/json
+
+{
+
+}
+
+POST {{url}}menu
+Content-Type: application/json
+
+{
+    
+}
