@@ -42,3 +42,38 @@ router.post('add', async (request, respons) => {
 
     respons.send({acknowledged, insertedId})
 })
+
+
+// following menu items added to MondoDB 05/03/26
+// [
+//     {
+//         "title": "Bourbon Chicken Large",
+//         "image": "https://d1w7312wesee68.cloudfront.net/ZWaZQjDNMHbkk6PO56OkzJ2Jy42rOLwnEE7oOocYHM0/resize:fit:720:720/plain/s3://toasttab/restaurants/restaurant-60172000000000000/menu/images/item-7a81de0b-2226-4fb0-9828-2cfd749f1d6d.jpg",
+//         "description": "Chicken over Rice with Bourbon Sauce.  Choice of Side - Mac & Cheese, Cajun Potatoes, Grilled Veggies.",
+//         "price": "$14.25"
+//     },
+//     {
+//         "title": "Bahn Mi Bowl Large",
+//         "image": "https://d1w7312wesee68.cloudfront.net/gK-pJioh91dFmbx4ORKj4Y_8A9_9foi00TMwvtRgOU0/resize:fit:720:720/plain/s3://toasttab/restaurants/restaurant-60172000000000000/menu/images/item-002d0d68-5471-4687-8dc1-834076a97e16.jpg",
+//         "description": "Charred Chicken, Spicy Aioli, Pickled Carrots and Daikon, Cilantro, Cucumbers and Jalapenos all over a bowl of rice.",
+//         "price": "$14.25"
+//     },
+//     {
+//         "title": "Teriyaki Chicken Bowl Large",
+//         "image": "https://d1w7312wesee68.cloudfront.net/wtPlgGJsb6FyacjXYlCeVD3KIHryvyyHWa1yipbb_-k/resize:fit:720:720/plain/s3://toasttab/restaurants/restaurant-60172000000000000/menu/items/6/item-300000012394416486_1627436224.jpg",
+//         "description": "Grilled Chicken with Grilled Zucchini, Onions and Carrots over a bed of rice with Sweet & Tangy Teriyaki Sauce over the top!",
+//         "price": "$14.25"
+//     },
+//     {
+//         "title": "12'' Large Buffalo Chicken Finger Sub",
+//         "image": "https://d1w7312wesee68.cloudfront.net/XPf5zPGWzuZW2GVyyRq50pR0NhTOCidgnbklBoSnmHc/resize:fit:720:720/plain/s3://toasttab/restaurants/restaurant-60172000000000000/menu/items/4/item-300000009841751674_1617477250.jpg",
+//         "description": "Fried Chicken Strips dripping in Ranch and Buffalo Sauce, Lettuce and Tomatoes on a toasty hoagie roll.",
+//         "price": "$13.25"
+//     },
+//     {
+//         "title": "Chicken Gyro w/ Fries",
+//         "image": "https://d1w7312wesee68.cloudfront.net/hPkEzskxsjkCSn7FQx4zFLx1YriWwCEVj_ickPif2S0/resize:fit:720:720/plain/s3://toasttab/restaurants/restaurant-60172000000000000/menu/items/8/item-300000012208510928_1626380066.jpg",
+//         "description": "Grilled Chicken, Creamy Garlic Sauce, Onions, Lettuce, Tomatoes and Fries all wrapped in a warm fluffy Pita.  Comes with a side of fries!",
+//         "price": "$13.50"
+//     },
+// ]
