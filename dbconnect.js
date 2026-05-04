@@ -1,6 +1,3 @@
-
-// Layout - verify and adjust -Brandon
-
 const { MongoClient, ObjectId } = require('mongodb')
 const { uri } = require ('./secrets/mongodb.json')
 

@@ -1,9 +1,9 @@
 const router = require('express').Router()
-const { getCollection, ObjectID } = require('../../../dbconnect')
+const { getCollection, ObjectId } = require('../../../dbconnect')
 
 let fullMenu = null
 const getMenu = async() => {
-    if (!fullMenu) fullMenu = await getCollection()
+    if (!fullMenu) fullMenu = await getCollection('FoodTruckListings', 'menuItems')
     return fullMenu 
 }
 
@@ -11,7 +11,7 @@ const getMenu = async() => {
 // the menu items for the food truck. The menu should contain at least 5 
 // items, and each item should have a name, description, price, and url 
 // for an image.
-router.get('menu', async (request, response) => {
+router.get('/', async (request, response) => {
     const collection = await getMenu()
     const found = await collection.find().toArray()
     //console.log(found)
@@ -22,7 +22,7 @@ router.get('menu', async (request, response) => {
 
 //GET api/v1/menu/:id - This route should return a JSON object that 
 // contains the menu item with the specified id.
-router.get('menu/:id', async (request, response) => {
+router.get('/:id', async (request, response) => {
     const {id} = request.params
     const collection = await getMenu()
     const found = await collection.findOne({_id: new ObjectId(id)})
@@ -35,10 +35,10 @@ router.get('menu/:id', async (request, response) => {
 //POST /api/v1/menu - This route should add a new menu item to the 
 // database. The request body should contain the name, description, 
 // price, and image URL for the new menu item.
-router.post('add', async (request, respons) => {
-    const {variable, variable, variable} = request.body
+router.post('/', async (request, respons) => {
+    const {title, image, description, price} = request.body
     const collection = await getMenu()
-    const {acknowledged, insertedId} = await collection.insertOne()({variable, variable, variable})
+    const {acknowledged, insertedId} = await collection.insertOne({title, image, description, price})
 
     respons.send({acknowledged, insertedId})
 })
@@ -77,3 +77,5 @@ router.post('add', async (request, respons) => {
 //         "price": "$13.50"
 //     },
 // ]
+
+module.exports = router

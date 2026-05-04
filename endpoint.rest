@@ -1,29 +1,43 @@
 ### Variables here
 @url = http://localhost:3010/api/v1/
 
-@id = 
+@eventsId = 69f7bd9fc03d11ce71cf6c10
+@menuId = 69f7d6aac03d11ce71cf6c23
 
-### GET all
-GET {{url}}events
+### GET all events
+GET {{url}}events/
 
-GET {{url}}menu
+### GET full menu
+GET {{url}}menu/
 
-### Get by Id
-GET {{url}}events/{{id}}
 
-GET {{url}}menu/{{id}}
+### Get events by Id
+GET {{url}}events/byId/{{eventsId}}
 
-### 
-POST {{url}}events
+### GET menu by Id
+GET {{url}}menu/{{menuId}}
+
+
+### POST events
+POST {{url}}events/
 Content-Type: application/json
 
 {
-
+    "title": "Test Festival",
+    "image": "https://Digital-Banners.png",
+    "description": "Test Description",
+    "dates": "January 1",
+    "location": "Lafayette CO",
+    "times": "9:00 AM - 5:00 PM"
 }
 
-POST {{url}}menu
+### POST menu
+POST {{url}}menu/
 Content-Type: application/json
 
 {
-     
+     "title": "Test Bourbon",
+    "image": "https://2cfd749f1d6d.jpg",
+    "description": "Test Description.",
+    "price": "$0.25"
 }
