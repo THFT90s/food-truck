@@ -1,6 +1,6 @@
 ### Variables here
 @url = http://localhost:3010/api/v1/
-
+            
 @eventsId = 69f7bd9fc03d11ce71cf6c10
 @menuId = 69f7d6aac03d11ce71cf6c23
 
@@ -12,7 +12,7 @@ GET {{url}}menu/
 
 
 ### Get events by Id
-GET {{url}}events/byId/{{eventsId}}
+GET {{url}}events/{{eventsId}}
 
 ### GET menu by Id
 GET {{url}}menu/{{menuId}}

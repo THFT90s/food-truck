@@ -5,7 +5,7 @@ const getMenu = async () => {
 }
 
 const getEvents = async () => {
-  const response = await fetch('/api/v1/event')
+  const response = await fetch('/api/v1/events')
   return await response.json()
 }
 
@@ -65,10 +65,10 @@ const showDetails = async () => {
   const path = window.location.pathname
 
  //to get the id
-  const id = path.replace('/event/', '')
+  const id = path.replace('/events/', '')
 
 // fetch the event mongo using the id
-  const res = await fetch(`/api/v1/event/${id}`)
+  const res = await fetch(`/api/v1/events/${id}`)
   const event = await res.json()
 
 // display it on the page
@@ -80,7 +80,7 @@ const showDetails = async () => {
 }
 
 // calling it on the event details page
-  if (window.location.pathname.startsWith('/event/')) {
+  if (window.location.pathname.startsWith('/events/')) {
   showDetails()
 }
 
@@ -122,7 +122,7 @@ const showDetails = async () => {
     const etime = document.querySelector('#event-time').value
     const edescription = document.querySelector('#event-description').value
 
-    const res = await fetch('/api/v1/event', {
+    const res = await fetch('/api/v1/events', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ title: etitle, location: elocation, dates: edate, times: etime, description: edescription })
