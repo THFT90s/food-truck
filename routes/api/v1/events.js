@@ -20,9 +20,10 @@ router.get('/', async (request, response) => {
         else response.send({'No Menu found' : Any})
 })
 
+
 //GET /api/v1/events/:id - This route should return a JSON object that 
 // contains the event with the specified id.
-router.get('/byId/:id', async (request, response) => {
+router.get('/:id', async (request, response) => {
     const {id} = request.params
     const allEvents = await getEvents()
     const found = await allEvents.findOne({ _id: new ObjectId(id)})

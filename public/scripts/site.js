@@ -1,83 +1,140 @@
-// Future dynamic menu structure:
+// Fetch menu and events data from mongodb for index
+const getMenu = async () => {
+  const response = await fetch('/api/v1/menu')
+  return await response.json()
+}
 
-// const menuItems = [
-//   { name: "", description: "", price: 0.00, image: "" }
-// ];
-//
-// const menuContainer = document.querySelector("#menu-items");
-//
-// menuItems.forEach(item => {
-//   const card = document.createElement("article");
-//   card.classList.add("card");
-//
-//   card.innerHTML = `
-//     <img src="${item.image || '/images/default.jpg'}" alt="${item.name}">
-//     <h3>${item.name}</h3>
-//     <p>${item.description}</p>
-//     <p>$${item.price.toFixed(2)}</p>
-//   `;
-//
-//   menuContainer.appendChild(card);
-// });
+const getEvents = async () => {
+  const response = await fetch('/api/v1/event')
+  return await response.json()
+}
+
+// for the menu 
+const showMenu = menuItems => {
+  const menuContainer = document.querySelector('#menu-items')
+
+  menuItems.forEach(item => {
+    const card = document.createElement('div')
+    card.className = 'menu-card'
+
+    card.innerHTML = `
+      <img src="${item.image}" alt="${item.name}">
+      <h3>${item.title}</h3>
+      <p>${item.description}</p>
+      <p><strong>${item.price}</strong></p>
+    `
+
+    menuContainer.appendChild(card)
+  })
+}
+
+// for the events
+
+const showEvents = events => {
+  const eventsContainer = document.querySelector('#event-list')
+
+  events.forEach(event => {
+    const card = document.createElement('div')
+    card.className = 'event-card'
+
+    card.innerHTML = `
+      <h3>${event.title}</h3>
+      <p>${event.dates}</p>
+      <a href="/event/${event._id}"><strong>View Details</strong></a>
+    `
+
+    eventsContainer.appendChild(card)
+  })
+}
+
+const startHomePage = async () => {
+  const menu = await getMenu()
+  const events = await getEvents()
+
+  showMenu(menu)
+  showEvents(events)
+}
+
+startHomePage()
 
 
-// Future dynamic events structure:
+// for the event details page
 
-// Expected event object:
-// {
-//   id: number,
-//   name: string,
-//   date: string
-// }
+const showDetails = async () => {
+// get the current URL path
+  const path = window.location.pathname
 
-// const events = [
-//   { id: 1, name: "Friday Night Market", date: "April 26, 2026" },
-//   { id: 2, name: "Downtown Lunch Stop", date: "April 28, 2026" }
-// ];
+ //to get the id
+  const id = path.replace('/event/', '')
 
-// const eventContainer = document.querySelector("#event-list");
+// fetch the event mongo using the id
+  const res = await fetch(`/api/v1/event/${id}`)
+  const event = await res.json()
 
-// events.forEach(event => {
-//   const link = document.createElement("a");
-//   link.href = `/event/${event.id}`;
-//   link.classList.add("event-link");
+// display it on the page
+  document.querySelector('#title').textContent = event.title
+  document.querySelector('#date').textContent = event.dates
+  document.querySelector('#time').textContent = event.times
+  document.querySelector('#location').textContent = event.location
+  document.querySelector('#description').textContent = event.description
+}
 
-//   const card = document.createElement("article");
-//   card.classList.add("card");
+// calling it on the event details page
+  if (window.location.pathname.startsWith('/event/')) {
+  showDetails()
+}
 
-//   card.innerHTML = `
-//     <h3>${event.name}</h3>
-//     <p>${event.date}</p>
-//   `;
+//admin: form submission to add new menu items and events to the database
+  const startAdminPage = () => {
+  const menuForm = document.querySelector('#addmenuform')
+  const eventForm = document.querySelector('#addeventform')
 
-//   link.appendChild(card);
-//   eventContainer.appendChild(link);
-// });
+  const menuMessage = document.querySelector('#menu-message')
+  const eventMessage = document.querySelector('#event-message')
 
-// Future dynamic event detail structure:
+  // menu posting
+  menuForm.addEventListener('submit', async (e) => {
+    e.preventDefault()
 
-// Example event detail object:
-// {
-//   id: 1,
-//   name: "Friday Night Market",
-//   date: "April 26, 2026",
-//   time: "6:00 PM",
-//   location: "Riverfront Park"
-// }
+    const title = document.querySelector('#menu-title').value
+    const description = document.querySelector('#menu-description').value
+    const price = document.querySelector('#menu-price').value
+    const image = document.querySelector('#menu-image').value
 
-// const eventId = window.location.pathname.split("/").pop();
+    const res = await fetch('/api/v1/menu', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ title, description, price, image })
+    })
 
-// const eventName = document.querySelector("#event-name");
-// const eventDate = document.querySelector("#event-date");
-// const eventTime = document.querySelector("#event-time");
-// const eventLocation = document.querySelector("#event-location");
+    await res.json()
+    menuMessage.textContent = "Menu item added!"
+    menuForm.reset()
+  })
 
-// Example later:
-// fetch(`/api/v1/events/${eventId}`)
-//   .then(response => response.json())
-//   .then(event => {
-//     eventName.textContent = event.name;
-//     eventDate.textContent = `Date: ${event.date}`;
-//     eventTime.textContent = `Time: ${event.time}`;
-//     eventLocation.textContent = `Location: ${event.location}`;
-//   });
+  // events posting
+  eventForm.addEventListener('submit', async (e) => {
+    e.preventDefault()
+
+    const etitle = document.querySelector('#event-title').value
+    const elocation = document.querySelector('#event-location').value
+    const edate = document.querySelector('#event-date').value
+    const etime = document.querySelector('#event-time').value
+    const edescription = document.querySelector('#event-description').value
+
+    const res = await fetch('/api/v1/event', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ title: etitle, location: elocation, dates: edate, times: etime, description: edescription })
+    })
+
+    await res.json()
+
+    eventMessage.textContent = "Event added successfully!"
+    eventForm.reset()
+  })
+} 
+
+if (window.location.pathname === '/admin') {
+  startAdminPage()
+}

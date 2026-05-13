@@ -36,8 +36,8 @@ POST {{url}}menu/
 Content-Type: application/json
 
 {
-     "title": "Test Bourbon",
-    "image": "https://2cfd749f1d6d.jpg",
-    "description": "Test Description.",
-    "price": "$0.25"
+     "title": "Grilled Onion Double Cheeseburger",
+    "image": "https://www.foodandwine.com/thmb/0SHv4wzGz7OBOcYtVbRWQeuR2CQ=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/MSG-Smash-Burger-FT-RECIPE0124-d9682401f3554ef683e24311abdf342b.jpg",
+    "description": "Beef patty x2 with grilled onions, American cheese, pickles, and our special sauce on a toasted bun.",
+    "price": "$13.25"
 }

@@ -8,16 +8,16 @@ router.get('/', (request, response) => {
     response.sendFile('index.html', {root})
 })
 
-router.get('/listings/events/:Id', (request, response) => {
+router.get('/listings/events/:id', (request, response) => {
     response.sendFile('index.html', {root})
 })
 
-router.get('/listings/menu/:Id', (request, response) => {
+router.get('/listings/menu/:id', (request, response) => {
     response.sendFile('index.html', {root})
 })
 
 router.get('/admin', (request, response) => {
-    response.sendFile('index.html', {root})
+    response.sendFile('admin.html', {root})
 })
 
 

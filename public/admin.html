@@ -9,31 +9,45 @@
 <body>
 
  <header>
-  <h1>Food Truck - Admin</h1>
+  <h1>Ru's Food Truck</h1>
   <nav>
     <a href="/">HOME</a>
   </nav>
 </header>
+<br>
+<main>
 
-
-<h1>Admin Panel</h1>
-
-<h2>Add Menu Item</h2>
-<form>
-  <input type="text" placeholder="Name">
-  <input type="text" placeholder="Description">
-  <input type="number" placeholder="Price">
-  <input type="text" placeholder="Image URL">
+<section class="admin-section">
+<h2>Admin</h2><hr><br>
+  <div id="additem">
+<h3>Add Menu Item</h3>
+<p id="menu-message"></p>
+<form id="addmenuform">
+  <input id="menu-title" type="text" placeholder="Name" style="width: 600px;"><br><br>
+  <input id="menu-description" type="text" placeholder="Description" style="width: 600px;"><br><br>
+  <input id="menu-price" type="number" placeholder="Price" step="0.01" min="0" style="width: 600px;"><br><br>
+  <input id="menu-image" type="text" placeholder="Image URL" style="width: 600px;"><br><br>
   <button type="submit">Add Menu Item</button>
 </form>
+</div>
 
-<h2>Add Event</h2>
-<form>
-  <input type="text" placeholder="Name">
-  <input type="text" placeholder="Location">
-  <input type="date">
-  <input type="time">
-  <button type="submit">Add Event</button>
+<div id="addevent">
+<h3>Add Event</h3>
+<p id="event-message"></p>
+<form id="addeventform">
+  <input type="text" placeholder="Name" id="event-title"style="width: 600px";> <br><br>
+  <input type="text" placeholder="Location" id="event-location" style="width: 600px;"><br><br>
+  <textarea placeholder="Description" id="event-description" style="width: 600px; height: 100px;"></textarea><br><br>
+  <input type="text" id="event-date" placeholder="Event Date(s)" style="width: 600px;"><br><br>
+  <input type="text" placeholder="Start through End Time" id="event-time" style="width: 600px;"><br><br>
+  <button type="submit">Add New Event</button>
 </form>
+</div>
+</section>
+</main> <BR>
+<footer>
+  <p>&copy; 2026 Ru's Food Truck</p>
+</footer>
+
 </body>
 </html>
