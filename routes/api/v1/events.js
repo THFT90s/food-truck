@@ -12,9 +12,9 @@ const getEvents = async() => {
 // least 5 items, and each item should have a name, location, date, and 
 // time.
 router.get('/', async (request, response) => {
-    const allEvents = await getEvents()
-    const found = await allEvents.find().toArray()
-    console.log(found)
+    const collection = await getEvents()
+    const found = await collection.find().toArray()
+    //console.log(found)
     
     if (found) response.send(found)
         else response.send({'No Menu found' : Any})
@@ -25,8 +25,8 @@ router.get('/', async (request, response) => {
 // contains the event with the specified id.
 router.get('/:id', async (request, response) => {
     const {id} = request.params
-    const allEvents = await getEvents()
-    const found = await allEvents.findOne({ _id: new ObjectId(id)})
+    const collection = await getEvents()
+    const found = await collection.findOne({ _id: new ObjectId(id)})
 
     if (found) response.send(found)
         else response.send({'No Menu found' : Any})
@@ -37,8 +37,8 @@ router.get('/:id', async (request, response) => {
 //  the new event.
 router.post('/', async (request, respons) => {
     const {title, image, description, dates, location, times} = request.body
-    const allEvents = await getEvents()
-    const {acknowledged, insertedId} = await allEvents.insertOne({title, image, description, dates, location, times})
+    const collection = await getEvents()
+    const {acknowledged, insertedId} = await collection.insertOne({title, image, description, dates, location, times})
 
     respons.send({acknowledged, insertedId})
 })

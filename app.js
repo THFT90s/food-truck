@@ -10,7 +10,7 @@ app.use(express.json())
 app.use(express.static('public'))
 
 // Attach Endpoints
-app.use('/api/v1/event', require('./routes/api/v1/events'))
+app.use('/api/v1/events', require('./routes/api/v1/events'))
 app.use('/api/v1/menu', require('./routes/api/v1/menu'))
 app.use(require('./routes/static'))
 
